@@ -1,19 +1,26 @@
-import { Component, Input } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+import { Component, OnInit }      from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
 
-import { Company } from './company';
+import { Company }           from './company';
+import { CompanyService }    from './company.service';
+
 @Component({
-  selector: 'company-detail',
-  template: `
-    <div *ngIf="company">
-      <h2>{{company.name}} details!</h2>
-      <div><label>id: </label>{{company.id}}</div>
-      <div>
-        <label>name: </label>
-        <input [(ngModel)]="company.name" placeholder="name"/>
-      </div>
-    </div>
-  `
+  selector: 'app-company-detail',
+  templateUrl: './company-detail.component.html'
 })
 export class CompanyDetailComponent {
-  @Input() company: Company;
+  company: Company;
+
+  constructor(
+    private service: CompanyService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params
+      .switchMap((params: Params) => this.service.getCompany(+params['id']))
+      .subscribe(company => this.company = company);
+  }
 }

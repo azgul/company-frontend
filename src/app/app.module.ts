@@ -1,12 +1,13 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, FormBuilder }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppRoutingModule }         from './app-routing.module';
 
 import { AppComponent }             from './app.component';
-import { CompaniesComponent }       from './companies.component';
+import { CompanyListComponent }       from './company-list.component';
+import { CompanyCreateComponent }   from './company-create.component';
 import { CompanyDetailComponent }   from './company-detail.component';
 import { CompanyService }           from './company.service';
 
@@ -19,10 +20,11 @@ import { CompanyService }           from './company.service';
   ],
   declarations: [
     AppComponent,
-    CompaniesComponent,
+    CompanyListComponent,
+    CompanyCreateComponent,
     CompanyDetailComponent
   ],
-  providers: [ CompanyService ],
+  providers: [ CompanyService, FormBuilder ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

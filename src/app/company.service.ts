@@ -9,7 +9,7 @@ import { Company } from './company';
 export class CompanyService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private apiUrl = 'http://127.0.0.1:3000';
+  private apiUrl = 'https://pacific-cove-37240.herokuapp.com';
 
   constructor(private http: Http) { }
 
@@ -21,7 +21,6 @@ export class CompanyService {
       .catch(this.handleError);
   }
 
-
   getCompany(id: number): Promise<Company> {
     const url = `${this.apiUrl}/company/${id}`;
     return this.http.get(url)
@@ -30,12 +29,12 @@ export class CompanyService {
       .catch(this.handleError);
   }
 
-  create(name: string): Promise<Company> {
+  create(company: Company): Promise<Company> {
     const url = `${this.apiUrl}/company/create`;
     return this.http
-      .post(url, JSON.stringify({name: name}), {headers: this.headers})
+      .post(url, JSON.stringify(company), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Company)
+      .then(res => res.json() as Company)
       .catch(this.handleError);
   }
 

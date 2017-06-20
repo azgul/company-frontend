@@ -5,6 +5,7 @@ export class Company {
   address: string;
   city: string;
   country: string;
+  phone: string;
   created_at: string;
   updated_at: string;
 }

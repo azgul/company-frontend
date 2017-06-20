@@ -1,0 +1,91 @@
+<h2>Create a company</h2>
+
+<form #companyForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="cvr">CVR number</label>
+    <input type="number" class="form-control" id="cvr" placeholder="cvr #" required
+           minlength="8" maxlength="9"
+           name="cvr" [(ngModel)]="company.cvr"
+           #cvr="ngModel">
+
+    <div *ngIf="cvr.errors && (cvr.dirty || cvr.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!cvr.errors.required">
+        CVR # is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Company name</label>
+    <input type="text" class="form-control" id="name" placeholder="company name" required
+           minlength="3" maxlength="40"
+           name="name" [(ngModel)]="company.name"
+           #name="ngModel">
+
+    <div *ngIf="name.errors && (name.dirty || name.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!name.errors.required">
+        Name is required
+      </div>
+      <div [hidden]="!name.errors.minlength">
+        Name must be at least 3 characters long.
+      </div>
+      <div [hidden]="!name.errors.maxlength">
+        Name cannot be more than 40 characters long.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" placeholder="address" required
+           name="address" [(ngModel)]="company.address"
+           #address="ngModel">
+
+    <div *ngIf="address.errors && (address.dirty || address.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!address.errors.required">
+        Address is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" class="form-control" id="city" placeholder="city" required
+           name="city" [(ngModel)]="company.city"
+           #city="ngModel">
+
+    <div *ngIf="city.errors && (city.dirty || city.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!city.errors.required">
+        City is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="country">Country</label>
+    <input type="text" class="form-control" id="country" placeholder="country" required
+           name="country" [(ngModel)]="company.country"
+           #country="ngModel">
+
+    <div *ngIf="country.errors && (country.dirty || country.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!country.errors.required">
+        Country is required
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="phone">Phone number</label>
+    <input type="text" class="form-control" id="phone" placeholder="phone"
+           name="phone" [(ngModel)]="company.phone"
+           #phone="ngModel">
+  </div>
+
+  <button class="btn btn-primary" [disabled]="!companyForm.form.valid">Create company</button>
+</form>

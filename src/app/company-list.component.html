@@ -1,0 +1,6 @@
+<h2>Company list</h2>
+<ul class="companies" class="list-group">
+  <li *ngFor="let company of companies" (click)="gotoDetail(company)" class="list-group-item">
+    <span>{{company.name}}</span>
+  </li>
+</ul>
